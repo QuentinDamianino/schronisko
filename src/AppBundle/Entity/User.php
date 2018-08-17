@@ -13,9 +13,8 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Class User
- * @package AppBundle\Entity
  * @ORM\Table(name="app_users")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity
  */
 
 class User implements AdvancedUserInterface, \Serializable
@@ -72,7 +71,7 @@ class User implements AdvancedUserInterface, \Serializable
         return $this->password;
     }
 
-    public  function getRoles()
+    public function getRoles()
     {
         return array('ROLE_USER');
     }
