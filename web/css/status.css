@@ -1,0 +1,13 @@
+table{
+    width: 100%;
+    text-align: center;
+}
+
+table{
+    margin-top: 25px;
+}
+
+td, th{
+    border: #313131 1px solid;
+}
+

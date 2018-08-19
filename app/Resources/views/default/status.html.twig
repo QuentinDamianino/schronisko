@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/status.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <table>
+            <tr>
+                <th>Imię</th>
+                <th>Rasa</th>
+                <th>Płeć</th>
+                <th>Wiek</th>
+            </tr>
+
+            {% for type, items in dogs %}
+                <tr>
+                    <td>{{ items.name }}</td>
+                    <td>{{ items.race }}</td>
+                    <td>{{ items.gender }}</td>
+                    <td>{{ items.age }}</td>
+                    <td><a href="{{ path('delete', {'id': items.id}) }}">Usuń</a></td>
+                    <td><a href="#">Edytuj</a></td>
+                </tr>
+
+            {% endfor %}
+        </table>
+
+        <a href="{{ path('add') }}"><div>DODAJ PSA</div></a>
+    </div>
+{% endblock %}

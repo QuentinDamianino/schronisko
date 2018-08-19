@@ -5,12 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Dog;
 use AppBundle\Form\addDogType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,6 +19,25 @@ class AppController extends Controller
     public function indexAction()
     {
         return $this->render("default/homepage.html.twig");
+    }
+
+    /**
+     * @Route("/status", name="status")
+     */
+
+    public function statusAction(EntityManagerInterface $entityManager)
+    {
+        $dogs = $entityManager->getRepository(Dog::class)->findAll();
+
+        if(!$dogs){
+            throw $this->createNotFoundException(
+                "Nie znaleziono żadnrgo psa"
+            );
+        }
+
+        return $this->render('default/status.html.twig', array(
+            'dogs' => $dogs,
+        ));
     }
 
     /**
@@ -44,10 +58,6 @@ class AppController extends Controller
         $dog->setGender($gender);
         $dog->setAge($age);
 
-        $date = new \DateTime('now');
-
-        $dog->setLastFeed($date);
-        $dog->setLastWalk($date);
 
         $form = $this->createForm(addDogType::class, $dog);
 
@@ -66,5 +76,17 @@ class AppController extends Controller
         ));
     }
 
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
 
+    public function deleteAction($id, EntityManagerInterface $entityManager)
+    {
+        $dog = $entityManager->getRepository(Dog::class)->find($id);
+
+        $entityManager->remove($dog);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("status");
+    }
 }
