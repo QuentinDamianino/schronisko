@@ -12,12 +12,8 @@
     {% endif %}
     <div class="login_form">
         <form action="{{ path('login') }}" method="post">
-            <label for="username">Username</label><br>
-            <input type="text" id="username" name="_username" value="{{ last_username }}"><br>
-
-            <label for="password">Password</label><br>
-            <input type="password" id="password" name="_password"><br>
-
+            <input type="text" id="username" name="_username" placeholder="Nazwa Użytkownika" value="{{ last_username }}"><br>
+            <input type="password" id="password" name="_password" placeholder="Hasło"><br>
             <button type="submit">Login</button>
         </form>
     </div>

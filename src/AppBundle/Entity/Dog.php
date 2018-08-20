@@ -24,7 +24,7 @@ class Dog
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64, unique=true)
+     * @ORM\Column(name="name", type="string", length=64)
      */
     private $name;
 
@@ -48,20 +48,6 @@ class Dog
      * @ORM\Column(name="gender", type="string", length=64)
      */
     private $gender;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="lastFeed", type="datetime")
-     */
-    private $lastFeed;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="lastWalk", type="datetime")
-     */
-    private $lastWalk;
 
     /**
      * @var string
@@ -175,54 +161,6 @@ class Dog
     public function getGender()
     {
         return $this->gender;
-    }
-
-    /**
-     * Set lastFeed
-     *
-     * @param \DateTime $lastFeed
-     *
-     * @return Dog
-     */
-    public function setLastFeed($lastFeed)
-    {
-        $this->lastFeed = $lastFeed;
-
-        return $this;
-    }
-
-    /**
-     * Get lastFeed
-     *
-     * @return \DateTime
-     */
-    public function getLastFeed()
-    {
-        return $this->lastFeed;
-    }
-
-    /**
-     * Set lastWalk
-     *
-     * @param \DateTime $lastWalk
-     *
-     * @return Dog
-     */
-    public function setLastWalk($lastWalk)
-    {
-        $this->lastWalk = $lastWalk;
-
-        return $this;
-    }
-
-    /**
-     * Get lastWalk
-     *
-     * @return \DateTime
-     */
-    public function getLastWalk()
-    {
-        return $this->lastWalk;
     }
 
     /**

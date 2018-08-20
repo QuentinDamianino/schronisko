@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Dog;
+use AppBundle\Entity\Shelter;
 use AppBundle\Form\addDogType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,16 +28,30 @@ class AppController extends Controller
 
     public function statusAction(EntityManagerInterface $entityManager)
     {
-        $dogs = $entityManager->getRepository(Dog::class)->findAll();
+        $dogRepository = $entityManager->getRepository(Dog::class);
+        $dogs = $dogRepository->findAll();
+        $countDogs = $dogRepository->countDogs();
+
+        $shelter = $entityManager->getRepository(Shelter::class)->find(1);
+        if ($shelter->getOccupiedRooms() != $countDogs[1])
+        {
+            $shelter->setOccupiedRooms($countDogs[1]);
+            $entityManager->flush();
+        }
+
+        $shelterRepository = $entityManager->getRepository(Shelter::class);
+        $rooms = $shelterRepository->findAll();
 
         if(!$dogs){
             throw $this->createNotFoundException(
-                "Nie znaleziono żadnrgo psa"
+                "Nie znaleziono żadnego psa"
             );
         }
 
         return $this->render('default/status.html.twig', array(
             'dogs' => $dogs,
+            'rooms' => $rooms,
+            'countDogs' => $countDogs,
         ));
     }
 
@@ -58,17 +73,19 @@ class AppController extends Controller
         $dog->setGender($gender);
         $dog->setAge($age);
 
+        $shelter = $entityManager->getRepository(Shelter::class)->find(1);
+
 
         $form = $this->createForm(addDogType::class, $dog);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid() && $shelter->getOccupiedRooms() < $shelter->getRooms()){
             $dog = $form->getData();
             $entityManager->persist($dog);
             $entityManager->flush();
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('status');
         }
 
         return $this->render('default/addDog.html.twig', array(

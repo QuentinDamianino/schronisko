@@ -4,14 +4,32 @@
     <link rel="stylesheet" href="{{ asset('css/status.css') }}">
 {% endblock %}
 
+{% block javascripts %}
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}
+
 {% block body %}
     <div class="wrapper">
+
+        {% if rooms.0.occupiedRooms >= rooms.0.Rooms %}
+            <h1 class="warning">UWAGA! SCHRONISKO JEST PEŁNE</h1>
+        {% endif %}
+
+        {% if rooms.0.Rooms - rooms.0.occupiedRooms <= 5 %}
+            <h1 class="info">UWAGA! POZOSTAŁO {{ rooms.0.Rooms - rooms.0.occupiedRooms }} MIEJSCE/A W SCHRONISKU</h1>
+        {% endif %}
+
+        <p class="status">Zapełnienie schroniska: {{ rooms.0.occupiedRooms }}/{{ rooms.0.Rooms }}</p>
+        <a class="stat" href="{{ path('add') }}"><p class="status">Dodaj psa</p></a>
         <table>
+            <caption><h1>Lista psów w shronisku</h1></caption>
             <tr>
                 <th>Imię</th>
                 <th>Rasa</th>
                 <th>Płeć</th>
                 <th>Wiek</th>
+                <th>Usuń</th>
+                <th>Edytuj</th>
             </tr>
 
             {% for type, items in dogs %}
@@ -26,7 +44,5 @@
 
             {% endfor %}
         </table>
-
-        <a href="{{ path('add') }}"><div>DODAJ PSA</div></a>
     </div>
 {% endblock %}
