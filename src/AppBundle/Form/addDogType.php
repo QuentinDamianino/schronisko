@@ -20,14 +20,19 @@ class addDogType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', TextType::class)
-            ->add('race', TextType::class)
+        $builder->add('name', TextType::class, array('label' => 'Imię:'))
+            ->add('race', TextType::class, array('label' => 'Rasa:'))
             ->add('gender', ChoiceType::class, array('choices' => array(
                 'pies' => 'Pies',
                 'suka' => 'Suka',
-            )))
-            ->add('age', NumberType::class)
-            ->add('submit', SubmitType::class, array('label' => 'Dodaj'))
+            ), 'label' => 'Płeć'))
+            ->add('age', NumberType::class, array('label' => 'Wiek:'))
+            ->add('submit', SubmitType::class, array(
+                'label' => 'Dodaj',
+                'attr' => [
+                    'class' => 'clear'
+                ]
+            ))
             ->getForm();
     }
 }

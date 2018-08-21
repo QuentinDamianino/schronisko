@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme form 'errors/errors.html.twig' %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 {% endblock %}
@@ -19,11 +19,13 @@
     </header>
 
     <div class="wrapper">
-
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
-
+        <div class="formContainer">
+            {% block form_errors %}
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            {% endblock %}
+        </div>
     </div>
 
 {% endblock %}

@@ -1,45 +1,5 @@
-table{
-    width: 100%;
-    text-align: center;
+body{
+    background-color: #d4d4d4;
 }
 
-table{
-    margin-top: 25px;
-    margin-bottom: 25px;
-    border-collapse: collapse;
-}
-
-td, th{
-    border: #313131 1px solid;
-    padding: 2px;
-}
-
-caption{
-    border: #313131 solid 1px;
-    border-bottom: 0;
-    padding: 10px;
-}
-
-.warning{
-    color: #e74646;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.status{
-    font-size: 25px;
-    margin-top: 20px;
-    display: inline-block;
-}
-
-.info{
-    color: #0088CC;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.stat{
-    color: red;
-    float: right;
-}
 

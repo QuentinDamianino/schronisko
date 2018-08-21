@@ -42,3 +42,103 @@ li a:hover{
 .active{
     background-color: #4CAF50;
 }
+
+input[type=text], select{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    font-size: 20px;
+}
+
+label{
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+button{
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+form div:nth-child(5){
+    display: table;
+    clear: both;
+}
+
+form li{
+    color: red;
+}
+
+.formContainer{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+table{
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-collapse: collapse;
+    border: 1px solid #4caf50;
+    border-radius: 4px;
+}
+
+td, th{
+    padding: 5px;
+}
+
+th{
+    border: #313131 1px solid;
+    background-color: #4caf50;
+}
+
+td{
+    border: 1px solid #4caf50;
+    background-color: #333;
+    color: white;
+}
+
+caption{
+    border: #313131 solid 1px;
+    border-bottom: 0;
+    padding: 10px;
+    background-color: #4caf50;
+}
+
+.warning{
+    color: #e74646;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.status{
+    font-size: 25px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.info{
+    color: #0088CC;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.stat{
+    color: red;
+    float: right;
+}
+
+table a{
+    color: #fff;
+}
