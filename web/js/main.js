@@ -1,3 +1,7 @@
-let shelterIsFull = function () {
-    alert("Shronisko jest pełne. Nie możesz dodać kolejnego psa")
-}
+document.addEventListener('DOMContentLoaded', function () {
+    let warning = document.querySelector('.alert');
+    let message = warning.dataset.warning;
+    if (message !== null){
+        alert(message);
+    }
+})

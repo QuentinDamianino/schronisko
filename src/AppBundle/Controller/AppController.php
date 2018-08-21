@@ -74,8 +74,15 @@ class AppController extends Controller
         $dog->setAge($age);
 
         $shelter = $entityManager->getRepository(Shelter::class)->find(1);
+        if ($shelter->getOccupiedRooms() >= $shelter->getRooms())
+        {
+            $this->addFlash(
+                'warning',
+                'Schronisko jest przepełnione. Nie możesz dodać więcej zwierząt'
+            );
 
-
+            return $this->redirectToRoute('status');
+        }
         $form = $this->createForm(addDogType::class, $dog);
 
         $form->handleRequest($request);

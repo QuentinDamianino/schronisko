@@ -11,6 +11,10 @@
 {% block body %}
     <div class="wrapper">
 
+        {% for flashMessage in app.session.flashbag.get('warning') %}
+            <div class="alert" data-warning="{{ flashMessage }}"></div>
+        {% endfor %}
+
         {% if rooms.0.occupiedRooms >= rooms.0.Rooms %}
             <h1 class="warning">UWAGA! SCHRONISKO JEST PEŁNE</h1>
         {% endif %}
