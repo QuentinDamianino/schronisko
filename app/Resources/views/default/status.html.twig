@@ -9,12 +9,20 @@
 {% endblock %}
 
 {% block body %}
+
+    <header>
+        <nav>
+            <div class="wrapper">
+                <ul>
+                    <li><a href="{{ path('homepage') }}">Strona Główna</a></li>
+                    <li class="active"><a href="{{ path('status') }}">Status</a></li>
+                    <li><a href="{{ path('add') }}">Dodaj psa</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
     <div class="wrapper">
-
-        {% for flashMessage in app.session.flashbag.get('warning') %}
-            <div class="alert" data-warning="{{ flashMessage }}"></div>
-        {% endfor %}
-
         {% if rooms.0.occupiedRooms >= rooms.0.Rooms %}
             <h1 class="warning">UWAGA! SCHRONISKO JEST PEŁNE</h1>
         {% endif %}
@@ -46,6 +54,10 @@
                     <td><a href="#">Edytuj</a></td>
                 </tr>
 
+            {% endfor %}
+
+            {% for flashMessage in app.session.flashbag.get('warning') %}
+                <div class="alert" data-warning="{{ flashMessage }}"></div>
             {% endfor %}
         </table>
     </div>

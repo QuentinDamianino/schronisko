@@ -1,8 +1,26 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+{% endblock %}
+
 {% block body %}
 
-    <a href="{{ path('add') }}">Dodaj psa</a>
-    <a href="{{ path('status') }}">Sprawdź stan schroniska</a>
+    <header>
+        <nav>
+            <div class="wrapper">
+                <ul>
+                    <li class="active"><a href="{{ path('homepage') }}">Strona Główna</a></li>
+                    <li><a href="{{ path('status') }}">Status</a></li>
+                    <li><a href="{{ path('add') }}">Dodaj psa</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <a href="{{ path('add') }}">Dodaj psa</a>
+        <a href="{{ path('status') }}">Sprawdź stan schroniska</a>
+    </div>
 
 {% endblock %}

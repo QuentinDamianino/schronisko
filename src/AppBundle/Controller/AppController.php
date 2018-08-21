@@ -83,17 +83,21 @@ class AppController extends Controller
 
             return $this->redirectToRoute('status');
         }
-        $form = $this->createForm(addDogType::class, $dog);
 
-        $form->handleRequest($request);
+        else{
+            $form = $this->createForm(addDogType::class, $dog);
 
-        if ($form->isSubmitted() && $form->isValid() && $shelter->getOccupiedRooms() < $shelter->getRooms()){
-            $dog = $form->getData();
-            $entityManager->persist($dog);
-            $entityManager->flush();
+            $form->handleRequest($request);
 
-            return $this->redirectToRoute('status');
+            if ($form->isSubmitted() && $form->isValid() && $shelter->getOccupiedRooms() < $shelter->getRooms()){
+                $dog = $form->getData();
+                $entityManager->persist($dog);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('status');
+            }
         }
+
 
         return $this->render('default/addDog.html.twig', array(
             'form' => $form->createView(),
