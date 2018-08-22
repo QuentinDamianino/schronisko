@@ -29,9 +29,6 @@ class addDogType extends AbstractType
             ->add('age', NumberType::class, array('label' => 'Wiek:'))
             ->add('submit', SubmitType::class, array(
                 'label' => 'Dodaj',
-                'attr' => [
-                    'class' => 'clear'
-                ]
             ))
             ->getForm();
     }

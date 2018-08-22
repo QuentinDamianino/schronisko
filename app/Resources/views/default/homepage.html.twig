@@ -5,21 +5,28 @@
 {% endblock %}
 
 {% block body %}
-
     <header>
         <nav>
             <div class="wrapper">
                 <ul>
                     <li class="active"><a href="{{ path('homepage') }}">Strona Główna</a></li>
                     <li><a href="{{ path('status') }}">Status</a></li>
-                    <li><a href="{{ path('add') }}">Dodaj psa</a></li>
+                    <li><a href="{{ path('addDog') }}">Dodaj psa</a></li>
+                    <li><a href="{{ path('addNote') }}">Dodaj notkę</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <div class="wrapper">
-
+        {% for type, items in notes %}
+            <article>
+                <h1>{{ items.title }}</h1>
+                <p>{{ items.content }}</p>
+                <small>Dodano przez: {{ items.creator }} |</small>
+                <small>{{ items.date|date("d-m-Y H:i:s") }}</small>
+            </article>
+        {% endfor %}
     </div>
 
 {% endblock %}

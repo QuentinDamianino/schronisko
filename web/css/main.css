@@ -43,7 +43,7 @@ li a:hover{
     background-color: #4CAF50;
 }
 
-input[type=text], select{
+input[type=text], select, textarea{
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -69,7 +69,7 @@ button{
     float: right;
 }
 
-form div:nth-child(5){
+form div:nth-last-child(2){
     display: table;
     clear: both;
 }
@@ -80,8 +80,9 @@ form li{
 
 .formContainer{
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #f0f0f0;
     padding: 20px;
+    margin-top: 10px;
 }
 
 table{
@@ -141,4 +142,14 @@ caption{
 
 table a{
     color: #fff;
+}
+
+article{
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    padding: 15px;
+    margin-top: 10px;
+}
+article h1, p, small{
+    margin: 5px;
 }

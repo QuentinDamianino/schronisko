@@ -12,16 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AppController extends Controller
 {
-
-    /**
-     * @Route("/", name="homepage")
-     */
-
-    public function indexAction()
-    {
-        return $this->render("default/homepage.html.twig");
-    }
-
     /**
      * @Route("/status", name="status")
      */
@@ -56,7 +46,7 @@ class AppController extends Controller
     }
 
     /**
-     * @Route("/add", name="add")
+     * @Route("/addDog", name="addDog")
      */
 
     public function addAction(Request $request, EntityManagerInterface $entityManager)

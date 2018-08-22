@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% form_theme form 'errors/errors.html.twig' %}
+{#{% form_theme form 'errors/errors.html.twig' %}#}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 {% endblock %}
@@ -12,8 +12,8 @@
                 <ul>
                     <li><a href="{{ path('homepage') }}">Strona Główna</a></li>
                     <li><a href="{{ path('status') }}">Status</a></li>
-                    <li class="active"><a href="{{ path('addDog') }}">Dodaj psa</a></li>
-                    <li><a href="{{ path('addNote') }}">Dodaj notkę</a></li>
+                    <li><a href="{{ path('addDog') }}">Dodaj psa</a></li>
+                    <li class="active"><a href="{{ path('addNote') }}">Dodaj notkę</a></li>
                 </ul>
             </div>
         </nav>
