@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'errors/errors.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <header>
+        <nav>
+            <div class="wrapper">
+                <ul>
+                    <li><a href="{{ path('homepage') }}">Strona Główna</a></li>
+                    <li><a href="{{ path('status') }}">Status</a></li>
+                    <li class="active"><a href="{{ path('addDog') }}">Dodaj psa</a></li>
+                    <li><a href="{{ path('addNote') }}">Dodaj notkę</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="wrapper">
+        <div class="formContainer">
+            {% block form_errors %}
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}

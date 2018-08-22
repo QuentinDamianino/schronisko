@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/status.css') }}">
 {% endblock %}
 
 {% block javascripts %}
@@ -51,14 +50,13 @@
                     <td>{{ items.gender }}</td>
                     <td>{{ items.age }}</td>
                     <td><a href="{{ path('delete', {'id': items.id}) }}">Usuń</a></td>
-                    <td><a href="#">Edytuj</a></td>
+                    <td><a href="{{ path('edit', {'id': items.id}) }}">Edytuj</a></td>
                 </tr>
 
             {% endfor %}
-
-            {% for flashMessage in app.session.flashbag.get('warning') %}
-                <div class="alert" data-warning="{{ flashMessage }}"></div>
-            {% endfor %}
         </table>
     </div>
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+        <div class="alert" data-warning="{{ flashMessage }}"></div>
+    {% endfor %}
 {% endblock %}

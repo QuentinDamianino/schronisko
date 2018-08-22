@@ -41,7 +41,6 @@ class AppController extends Controller
         return $this->render('default/status.html.twig', array(
             'dogs' => $dogs,
             'rooms' => $rooms,
-            'countDogs' => $countDogs,
         ));
     }
 
@@ -106,5 +105,37 @@ class AppController extends Controller
         $entityManager->flush();
 
         return $this->redirectToRoute("status");
+    }
+
+    /**
+     * @Route("/edit/{id}", name="edit")
+     */
+
+    public function editAction($id, Request $request, EntityManagerInterface $entityManager)
+    {
+        $name = $request->query->get('name');
+        $race = $request->query->get('race');
+        $gender = $request->query->get('gender');
+        $age = $request->query->get('age');
+
+        $dog = $entityManager->getRepository(Dog::class)->find($id);
+
+        $dog->setName($name);
+        $dog->setRace($race);
+        $dog->setGender($gender);
+        $dog->setAge($age);
+
+        $form = $this->createForm(addDogType::class, $dog);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->flush();
+
+            return $this->redirectToRoute('status');
+        }
+
+        return $this->render('default/editDog.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }

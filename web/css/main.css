@@ -91,8 +91,6 @@ table{
     margin-top: 25px;
     margin-bottom: 25px;
     border-collapse: collapse;
-    border: 1px solid #4caf50;
-    border-radius: 4px;
 }
 
 td, th{
@@ -105,9 +103,9 @@ th{
 }
 
 td{
-    border: 1px solid #4caf50;
-    background-color: #333;
-    color: white;
+    border: 1px solid black;
+    background-color: #f0f0f0;
+    color: black;
 }
 
 caption{
@@ -141,7 +139,7 @@ caption{
 }
 
 table a{
-    color: #fff;
+    color: #000;
 }
 
 article{
