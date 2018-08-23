@@ -19,16 +19,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class NoteController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{page}", name="homepage", requirements={"page"="\d+"})
      */
 
-    public function indexAction(EntityManagerInterface $entityManager)
+    public function indexAction(EntityManagerInterface $entityManager, $page = 1)
     {
+        $page = intval($page);
+        $firstResult = ($page - 1) * 5;
+
         $noteRepository = $entityManager->getRepository(Note::class);
-        $notes = $noteRepository->findAll();
+        $notes = $noteRepository->countNotes($firstResult);
 
         return $this->render("default/homepage.html.twig", array(
-            'notes' => $notes
+            'notes' => $notes,
+            'page' => $page,
         ));
     }
 

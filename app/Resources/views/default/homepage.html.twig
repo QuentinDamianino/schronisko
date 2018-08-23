@@ -17,7 +17,6 @@
             </div>
         </nav>
     </header>
-
     <div class="wrapper">
         {% for type, items in notes %}
             <article>
@@ -27,6 +26,7 @@
                 <small>{{ items.date|date("d-m-Y H:i:s") }}</small>
             </article>
         {% endfor %}
+        <a href="{{ path('homepage', {'page': page + 1}) }}"><button>Wczytaj więcej</button></a>
     </div>
 
 {% endblock %}
