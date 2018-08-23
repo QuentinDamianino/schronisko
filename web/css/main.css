@@ -35,6 +35,10 @@ li a{
     text-decoration: none;
 }
 
+.logout{
+    float: right;
+}
+
 li a:hover{
     background-color: #111;
 }

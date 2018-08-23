@@ -12,6 +12,16 @@ security:
                 class: AppBundle:User
 
     firewalls:
+        secured_area:
+            pattern: ^/
+            anonymous: ~
+            provider: db_provider
+            form_login:
+                login_path: login
+                check_path: login
+            logout:
+                path:   /logout
+                target: /login
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -19,8 +29,7 @@ security:
 
         main:
             anonymous: ~
-            pattern:    ^/
-            provider: db_provider
+
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -28,9 +37,7 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
-            form_login:
-                login_path: login
-                check_path: login
+
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
