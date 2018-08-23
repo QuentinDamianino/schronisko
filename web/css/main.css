@@ -43,7 +43,7 @@ li a:hover{
     background-color: #4CAF50;
 }
 
-input[type=text], select, textarea{
+input, select, textarea{
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -150,4 +150,15 @@ article{
 }
 article h1, p, small{
     margin: 5px;
+}
+
+.login_form{
+    background-color: #e1e1e1;
+    margin: auto;
+    margin-top: 200px;
+    padding: 25px;
+    width: 400px;
+    border: #313131 2px solid;
+    border-radius: 5%;
+    box-shadow: 2px 2px #313131;
 }

@@ -2,17 +2,6 @@ body{
     background-image: url("../img/dogs.jpeg");
 }
 
-.login_form{
-    background-color: #766749;
-    margin: auto;
-    margin-top: 200px;
-    padding: 25px;
-    width: 400px;
-    border: #313131 2px solid;
-    border-radius: 5%;
-    box-shadow: 2px 2px #313131;
-}
-
 label{
     color: white;
     font-size: 25px;
@@ -23,21 +12,6 @@ form{
 }
 
 input{
-    width: 300px;
-    height: 50px;
-    font-size: 20px;
-    text-align: center;
-    border: #313131 solid 4px;
-    color: #313131;
-    margin-bottom: 20px;
-}
-
-button{
-    background-color: #574a43;
-    color: white;
-    width: 100px;
-    height: 50px;
-    font-size: 20px;
-    border: #313131 1px solid;
-    border-radius: 10%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
