@@ -32,29 +32,36 @@
         {% endif %}
 
         <p class="status">Zapełnienie schroniska: {{ rooms.0.occupiedRooms }}/{{ rooms.0.Rooms }}</p>
-        <table>
-            <caption><h1>Lista psów w shronisku</h1></caption>
-            <tr>
-                <th>Imię</th>
-                <th>Rasa</th>
-                <th>Płeć</th>
-                <th>Wiek</th>
-                <th>Usuń</th>
-                <th>Edytuj</th>
-            </tr>
+        {#<table>#}
+            {#<caption><h1>Lista psów w shronisku</h1></caption>#}
+            {#<tr>#}
+                {#<th>Imię</th>#}
+                {#<th>Rasa</th>#}
+                {#<th>Płeć</th>#}
+                {#<th>Wiek</th>#}
+                {#<th>Usuń</th>#}
+                {#<th>Edytuj</th>#}
+            {#</tr>#}
 
-            {% for type, items in dogs %}
-                <tr>
-                    <td>{{ items.name }}</td>
-                    <td>{{ items.race }}</td>
-                    <td>{{ items.gender }}</td>
-                    <td>{{ items.age }}</td>
-                    <td><a href="{{ path('delete', {'id': items.id}) }}">Usuń</a></td>
-                    <td><a href="{{ path('edit', {'id': items.id}) }}">Edytuj</a></td>
-                </tr>
+        <article class="flex-container table-header">
+            <div class="item"><h2>Imię</h2></div>
+            <div class="item"><h2>Rasa</h2></div>
+            <div class="item"><h2>Płeć</h2></div>
+            <div class="item"><h2>Wiek</h2></div>
+            <div class="item"><h2>Edytuj</h2></div>
+            <div class="item"><h2>Usuń</h2></div>
+        </article>
 
-            {% endfor %}
-        </table>
+        {% for type, items in dogs %}
+            <article class="flex-container">
+                <div class="item"><p>{{ items.name }}</p></div>
+                <div class="item"><p>{{ items.race }}</p></div>
+                <div class="item"><p>{{ items.gender }}</p></div>
+                <div class="item"><p>{{ items.age }}</p></div>
+                <div class="item"><a href="{{ path('edit', {'id': items.id}) }}"><button class="edit">Edytuj</button></a></div>
+                <div class="item"><a href="{{ path('delete', {'id': items.id}) }}"><button class="delete">Usuń</button></a></div>
+            </article>
+        {% endfor %}
     </div>
     {% for flashMessage in app.session.flashbag.get('warning') %}
         <div class="alert" data-warning="{{ flashMessage }}"></div>

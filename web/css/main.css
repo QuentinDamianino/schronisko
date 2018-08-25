@@ -166,3 +166,40 @@ article h1, p, small{
     border-radius: 5%;
     box-shadow: 2px 2px #313131;
 }
+
+.table-header{
+    background-color: #4caf50;
+}
+
+.table-header h2{
+    display: inline-block;
+    margin: auto;
+    font-size: 25px;
+}
+
+.flex-container{
+    display: flex;
+    flex-flow: nowrap row;
+    justify-content: space-around;
+}
+
+.item{
+    text-align: center;
+    width: 12%;
+    height: 40px;
+}
+.item p{
+    font-size: 20px;
+}
+
+.item button{
+    margin: 0;
+}
+
+.edit{
+    background-color: #387ab6;
+}
+
+.delete{
+    background-color: #ce403e;
+}
