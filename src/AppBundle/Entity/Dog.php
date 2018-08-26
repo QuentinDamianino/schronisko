@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Dog
@@ -53,6 +54,7 @@ class Dog
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=64, nullable=true, unique=true)
+     * @Assert\File(mimeTypes={ "image/jpeg", "image/png" })
      */
     private $image;
 

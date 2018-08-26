@@ -120,7 +120,7 @@ caption{
 }
 
 .warning{
-    color: #e74646;
+    color: #ce403e;
     text-align: center;
     margin-top: 20px;
 }
@@ -132,14 +132,9 @@ caption{
 }
 
 .info{
-    color: #0088CC;
+    color: #387ab6;;
     margin-top: 20px;
     text-align: center;
-}
-
-.stat{
-    color: red;
-    float: right;
 }
 
 table a{
@@ -167,10 +162,6 @@ article h1, p, small{
     box-shadow: 2px 2px #313131;
 }
 
-.table-header{
-    background-color: #4caf50;
-}
-
 .table-header h2{
     display: inline-block;
     margin: auto;
@@ -181,13 +172,37 @@ article h1, p, small{
     display: flex;
     flex-flow: nowrap row;
     justify-content: space-around;
+    align-items: center;
+    height: 30px;
+}
+
+.table-header{
+    background-color: #4caf50;
+    height: 15px;
+}
+
+.table-header .item{
+    padding-top: 10px;
 }
 
 .item{
     text-align: center;
-    width: 12%;
+    width: 15.5%;
     height: 40px;
 }
+
+.item-image{
+    width: 6%;
+}
+
+.item-button{
+ width: 10%;
+}
+
+.item-text{
+    padding-top: 5px;
+}
+
 .item p{
     font-size: 20px;
 }
@@ -202,4 +217,10 @@ article h1, p, small{
 
 .delete{
     background-color: #ce403e;
+}
+
+.image{
+    height: 50px;
+    border: white 1px solid;
+    margin-top: 3px;
 }

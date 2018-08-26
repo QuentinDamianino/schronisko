@@ -12,6 +12,7 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Dog;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -29,6 +30,7 @@ class addDogType extends AbstractType
                 'suka' => 'Suka',
             ), 'label' => 'Płeć'))
             ->add('age', NumberType::class, array('label' => 'Wiek:'))
+            ->add('image', FileType::class, array('label' => 'Zdjęcie'))
             ->add('submit', SubmitType::class, array(
                 'label' => 'Dodaj',
             ))

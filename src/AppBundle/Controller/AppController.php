@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Service\FileUploader;
 
 class AppController extends Controller
 {
@@ -48,20 +49,8 @@ class AppController extends Controller
      * @Route("/addDog", name="addDog")
      */
 
-    public function addAction(Request $request, EntityManagerInterface $entityManager)
+    public function addAction(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader)
     {
-        $name = $request->query->get('name');
-        $race = $request->query->get('race');
-        $gender = $request->query->get('gender');
-        $age = $request->query->get('age');
-
-        $dog = new Dog();
-
-        $dog->setName($name);
-        $dog->setRace($race);
-        $dog->setGender($gender);
-        $dog->setAge($age);
-
         $shelter = $entityManager->getRepository(Shelter::class)->find(1);
         if ($shelter->getOccupiedRooms() >= $shelter->getRooms())
         {
@@ -74,11 +63,17 @@ class AppController extends Controller
         }
 
         else{
+            $dog = new Dog();
             $form = $this->createForm(addDogType::class, $dog);
-
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid() && $shelter->getOccupiedRooms() < $shelter->getRooms()){
+
+            if ($form->isSubmitted() && $form->isValid()){
+                $file = $dog->getImage();
+                $fileName = $fileUploader->upload($file);
+
+                $dog->setImage($fileName);
+
                 $dog = $form->getData();
                 $entityManager->persist($dog);
                 $entityManager->flush();
@@ -111,24 +106,19 @@ class AppController extends Controller
      * @Route("/edit/{id}", name="edit")
      */
 
-    public function editAction($id, Request $request, EntityManagerInterface $entityManager)
+    public function editAction($id, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader)
     {
-        $name = $request->query->get('name');
-        $race = $request->query->get('race');
-        $gender = $request->query->get('gender');
-        $age = $request->query->get('age');
-
         $dog = $entityManager->getRepository(Dog::class)->find($id);
-
-        $dog->setName($name);
-        $dog->setRace($race);
-        $dog->setGender($gender);
-        $dog->setAge($age);
 
         $form = $this->createForm(addDogType::class, $dog);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+            $file = $dog->getImage();
+            $fileName = $fileUploader->upload($file);
+
+            $dog->setImage( $fileName);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('status');
@@ -137,5 +127,14 @@ class AppController extends Controller
         return $this->render('default/editDog.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * @return string
+     */
+
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
     }
 }

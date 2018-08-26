@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    dogs_photo_directory: '%kernel.project_dir%/web/img/dogs/small'
 
 framework:
     #esi: ~

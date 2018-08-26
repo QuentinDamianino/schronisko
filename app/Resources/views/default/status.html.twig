@@ -32,34 +32,32 @@
         {% endif %}
 
         <p class="status">Zapełnienie schroniska: {{ rooms.0.occupiedRooms }}/{{ rooms.0.Rooms }}</p>
-        {#<table>#}
-            {#<caption><h1>Lista psów w shronisku</h1></caption>#}
-            {#<tr>#}
-                {#<th>Imię</th>#}
-                {#<th>Rasa</th>#}
-                {#<th>Płeć</th>#}
-                {#<th>Wiek</th>#}
-                {#<th>Usuń</th>#}
-                {#<th>Edytuj</th>#}
-            {#</tr>#}
 
         <article class="flex-container table-header">
+            <div class="item-image"></div>
             <div class="item"><h2>Imię</h2></div>
             <div class="item"><h2>Rasa</h2></div>
             <div class="item"><h2>Płeć</h2></div>
             <div class="item"><h2>Wiek</h2></div>
-            <div class="item"><h2>Edytuj</h2></div>
-            <div class="item"><h2>Usuń</h2></div>
+            <div class="item item-button"><h2>Edytuj</h2></div>
+            <div class="item item-button"><h2>Usuń</h2></div>
         </article>
 
         {% for type, items in dogs %}
             <article class="flex-container">
-                <div class="item"><p>{{ items.name }}</p></div>
-                <div class="item"><p>{{ items.race }}</p></div>
-                <div class="item"><p>{{ items.gender }}</p></div>
-                <div class="item"><p>{{ items.age }}</p></div>
-                <div class="item"><a href="{{ path('edit', {'id': items.id}) }}"><button class="edit">Edytuj</button></a></div>
-                <div class="item"><a href="{{ path('delete', {'id': items.id}) }}"><button class="delete">Usuń</button></a></div>
+                <div class="item-image">
+                    {% if items.image == null %}
+                        <img class="image" src="{{ asset('img/dogs/small/brak.jpg') }}" alt="Brak zdjęcia">
+                    {% else %}
+                        <img class="image" src="{{ asset('img/dogs/small/' ~ items.image) }}" alt="Zdjęcie psa">
+                    {% endif %}
+                </div>
+                <div class="item item-text"><p>{{ items.name }}</p></div>
+                <div class="item item-text"><p>{{ items.race }}</p></div>
+                <div class="item item-text"><p>{{ items.gender }}</p></div>
+                <div class="item item-text"><p>{{ items.age }}</p></div>
+                <div class="item item-button"><a href="{{ path('edit', {'id': items.id}) }}"><button class="edit">Edytuj</button></a></div>
+                <div class="item item-button"><a href="{{ path('delete', {'id': items.id}) }}"><button class="delete">Usuń</button></a></div>
             </article>
         {% endfor %}
     </div>
