@@ -27,7 +27,14 @@
                 <small>{{ items.date|date("d-m-Y H:i:s") }}</small>
             </article>
         {% endfor %}
-        <a href="{{ path('homepage', {'page': page + 1}) }}"><button>Wczytaj więcej</button></a>
+
+        {% if page > 1 %}
+            <a href="{{ path('homepage', {'page': page - 1}) }}"><button>Poprzednie</button></a>
+        {% endif %}
+
+        {% if maxPages > page %}
+            <a href="{{ path('homepage', {'page': page + 1}) }}"><button>Wczytaj więcej</button></a>
+        {% endif %}
     </div>
 
 {% endblock %}

@@ -12,12 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class NoteRepository extends EntityRepository
 {
-    public function countNotes($firstResult)
+    public function selectNotes($firstResult)
     {
         return $this->getEntityManager()->createQuery(
             "SELECT n FROM AppBundle:Note n ORDER BY n.date DESC"
         )->setMaxResults(5)
             ->setFirstResult($firstResult)
             ->getResult();
+    }
+
+    public function countNotes()
+    {
+        return $this->getEntityManager()->createQuery(
+            "SELECT COUNT('id') FROM AppBundle:Note"
+        )->getOneOrNullResult();
     }
 }

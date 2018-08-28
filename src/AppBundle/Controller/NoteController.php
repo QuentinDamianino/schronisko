@@ -28,11 +28,15 @@ class NoteController extends Controller
         $firstResult = ($page - 1) * 5;
 
         $noteRepository = $entityManager->getRepository(Note::class);
-        $notes = $noteRepository->countNotes($firstResult);
+        $notes = $noteRepository->selectNotes($firstResult);
+        $countNotes = $noteRepository->countNotes();
+
+        $maxPages = intval(ceil($countNotes[1] / 5));
 
         return $this->render("default/homepage.html.twig", array(
             'notes' => $notes,
             'page' => $page,
+            'maxPages' => $maxPages,
         ));
     }
 
