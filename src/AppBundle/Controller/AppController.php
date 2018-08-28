@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Service\FileUploader;
+use Symfony\Component\HttpFoundation\File\File;
 
 class AppController extends Controller
 {
@@ -109,6 +110,10 @@ class AppController extends Controller
     public function editAction($id, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader)
     {
         $dog = $entityManager->getRepository(Dog::class)->find($id);
+
+        $dog->setImage(
+            new File($this->getParameter('dogs_photo_directory').'/'.$dog->getImage())
+        );
 
         $form = $this->createForm(addDogType::class, $dog);
         $form->handleRequest($request);
