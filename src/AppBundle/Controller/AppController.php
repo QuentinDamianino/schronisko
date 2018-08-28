@@ -110,10 +110,12 @@ class AppController extends Controller
     public function editAction($id, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader)
     {
         $dog = $entityManager->getRepository(Dog::class)->find($id);
-
-        $dog->setImage(
-            new File($this->getParameter('dogs_photo_directory').'/'.$dog->getImage())
-        );
+        if ($dog->getImage() != null)
+        {
+            $dog->setImage(
+                new File($this->getParameter('dogs_photo_directory').'/'.$dog->getImage())
+            );
+        }
 
         $form = $this->createForm(addDogType::class, $dog);
         $form->handleRequest($request);
