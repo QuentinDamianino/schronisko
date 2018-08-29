@@ -29,7 +29,7 @@ class addDogType extends AbstractType
                 'pies' => 'Pies',
                 'suka' => 'Suka',
             ), 'label' => 'Płeć'))
-            ->add('age', NumberType::class, array('label' => 'Wiek:'))
+            ->add('age', NumberType::class, array('label' => 'Wiek:'))->setRequired(false)
             ->add('image', FileType::class, array('label' => 'Zdjęcie'))
             ->add('submit', SubmitType::class, array(
                 'label' => 'Dodaj',

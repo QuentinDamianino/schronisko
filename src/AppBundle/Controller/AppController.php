@@ -68,12 +68,13 @@ class AppController extends Controller
             $form = $this->createForm(addDogType::class, $dog);
             $form->handleRequest($request);
 
-
             if ($form->isSubmitted() && $form->isValid()){
-                $file = $dog->getImage();
-                $fileName = $fileUploader->upload($file);
-
-                $dog->setImage($fileName);
+                if ($dog->getImage() != null)
+                {
+                    $file = $dog->getImage();
+                    $fileName = $fileUploader->upload($file);
+                    $dog->setImage($fileName);
+                }
 
                 $dog = $form->getData();
                 $entityManager->persist($dog);
@@ -110,6 +111,7 @@ class AppController extends Controller
     public function editAction($id, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader)
     {
         $dog = $entityManager->getRepository(Dog::class)->find($id);
+        $currentImage = $dog->getImage();
         if ($dog->getImage() != null)
         {
             $dog->setImage(
@@ -121,10 +123,16 @@ class AppController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $file = $dog->getImage();
-            $fileName = $fileUploader->upload($file);
-
-            $dog->setImage( $fileName);
+            if ($dog->getImage() == null)
+            {
+                $dog->setImage($currentImage);
+            }
+            else
+            {
+                $file = $dog->getImage();
+                $fileName = $fileUploader->upload($file);
+                $dog->setImage($fileName);
+            }
 
             $entityManager->flush();
 
